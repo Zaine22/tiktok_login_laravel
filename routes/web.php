@@ -1,11 +1,15 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SocialAuthController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/auth/tiktok', [SocialAuthController::class, 'redirectToTikTok']);
+Route::get('/callback/tiktok', [SocialAuthController::class, 'handleTikTokCallback']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -17,4 +21,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
