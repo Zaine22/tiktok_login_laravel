@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SocialAuthController;
+use App\Http\Controllers\TikTokController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,6 +11,9 @@ Route::get('/', function () {
 
 Route::get('/auth/tiktok', [SocialAuthController::class, 'redirectToTikTok']);
 Route::get('/callback/tiktok', [SocialAuthController::class, 'handleTikTokCallback']);
+
+Route::get('/tiktok/login', [TikTokController::class, 'login']);
+Route::get('/tiktok/callback', [TikTokController::class, 'handleCallback'])->name('tiktok.callback');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
